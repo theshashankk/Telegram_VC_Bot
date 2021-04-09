@@ -336,7 +336,7 @@ async def send(text):
     return m
 
 
-print("\nBot Starting...\nFor Support Join https://t.me/PatheticProgrammers\n")
+print("\nBot Starting...\nowner- [The Shashank](https://t.me/theshashank)\n")
 
 
 app.run()

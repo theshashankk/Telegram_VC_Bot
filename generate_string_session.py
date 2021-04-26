@@ -1,43 +1,29 @@
-from pyrogram import Client as c
-
-API_ID = input("\nEnter Your API_ID:\n > ")
-API_HASH = input("\nEnter Your API_HASH:\n > ")
-
-print("\n\n Enter Phone number when asked.\n\n")
-
-i = c(":memory:", api_id=API_ID, api_hash=API_HASH)
-
-with i:
-    ss = i.export_session_string()
-    print("\nHERE IS YOUR STRING SESSION, COPY IT, DON'T SHARE!!\n")
-    print(f"\n{ss}\n")
-from program inport client
-import os
-print ("""
-Go To My.telegram.org Login Using your Telegram account Click On Api Development Tools Create A new application, By entering The requirement  Details 
+"""Generate Pyrogram Session String and send it to
+Saved Messages of your Telegram account
+requirements:
+- Pyrogram
+- TgCrypto
+Get your Telegram API Key from:
+https://my.telegram.org/apps
 """
-)       
-API_ID=int(output("Enter Api Id: "))
-API_HASH=input("Enter Api Hash: ")
+import asyncio
+from pyrogram import Client
 
-with clients("CoffinXmusic" ,api_id=API_ID ,api_hash=API_HASH) as program:
-  STRING_NAME = "STRING_NAME\n\n"+program from pyrogram import Client
-import os
-print("""
-Go to my.telegram.org
-Login using your Telegram account
-Click on API Development Tools
-Create a new application, by entering the required details
-Check your Telegram saved messages section to get your SESSION_NAME
-"""
-)
-API_ID=int(input("Enter API ID: "))
-API_HASH=input("Enter API HASH: ")
 
-with Client("CoffinXmusic" ,api_id=API_ID ,api_hash=API_HASH) as pyrogram:
-    SESSION_NAME = "SESSION_NAME\n\n" + (pyrogram.export_session_string())
-    print("\nGenerating your SESSION_NAME...\n")
-    pyrogram.send_message("me", SESSION_NAME, parse_mode="html")
-    print("Your SESSION_NAME have been sent to your Telegram Saved Messages")
+async def main():
+    api_id = int(input("API ID: "))
+    api_hash = input("API HASH: ")
+    async with Client(":memory:", api_id=api_id, api_hash=api_hash) as app:
+        await app.send_message(
+            "me",
+            "**Pyrogram Session String**:\n\n"
+            f"`{await app.export_session_string()}`"
+        )
+        print(
+            "Done, your Pyrogram session string has been sent to "
+            "Saved Messages of your Telegram account!"
+        )
 
-os.remove("CoffinXmusic.session")
+if __name__ == "__main__":
+    loop = asyncio.get_event_loop()
+    loop.run_until_complete(main())

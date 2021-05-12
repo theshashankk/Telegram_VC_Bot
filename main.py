@@ -63,12 +63,12 @@ async def joinvc(_, message):
     global chat_joined
     try:
         if chat_joined:
-            await send("__**Bot Is Already In Voice Chat.**__")
+            await send("__** 😏 Bot Is Already In Voice Chat.**__")
             return
         chat_id = message.chat.id
         await vc.start(chat_id)
         chat_joined = True
-        m = await send("__**Joined The Voice Chat.**__")
+        m = await send("__**Joined The Voice Chat.☊**__")
     except Exception as e:
         print(str(e))
         await send(str(e))
@@ -105,7 +105,7 @@ async def queuer(_, message):
         await send(usage)
         return
     if len(queue) > 0:
-        await send("__**Added To Queue.__**")
+        await send("__**Added To Queue 🔰.__**")
         queue.append({"service": service, "song": song_name,
                       "requested_by": requested_by})
         await play()
